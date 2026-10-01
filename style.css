@@ -331,7 +331,301 @@ html[data-theme="dark"] .trait-list span, html[data-theme="dark"] .theme-toggle 
   .site-footer p { order: 3; width: 100%; }
 }
 
+/* ── Scroll Progress Bar ── */
+.scroll-progress {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--peach), var(--lavender));
+  transition: width .08s linear;
+  pointer-events: none;
+}
+
+/* ── Cursor Glow ── */
+.cursor-glow {
+  position: fixed;
+  z-index: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 115, 90, .06) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity .3s;
+}
+html[data-theme="dark"] .cursor-glow {
+  background: radial-gradient(circle, rgba(159, 206, 169, .07) 0%, transparent 70%);
+}
+
+/* ── Active Nav Link ── */
+.nav a.is-active {
+  color: var(--green);
+  position: relative;
+}
+.nav a.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--green);
+  border-radius: 1px;
+  animation: navSlideIn .3s ease forwards;
+}
+@keyframes navSlideIn {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ── Staggered Reveal Children ── */
+.js [data-stagger] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.js [data-stagger].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Enhanced Hero Entrance ── */
+.js .hero-copy[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+.js .hero-copy[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+.js .hero-visual[data-reveal] {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity .9s cubic-bezier(.22, 1, .36, 1) .15s, transform .9s cubic-bezier(.22, 1, .36, 1) .15s;
+}
+.js .hero-visual[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Typing Cursor ── */
+[data-typing] {
+  display: inline;
+}
+
+/* ── Enhanced Card Hover Transitions ── */
+.skill-card {
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), border-color .25s ease, background .25s ease, box-shadow .35s ease;
+}
+.skill-card:hover {
+  box-shadow: 0 20px 50px rgba(34, 53, 41, .15);
+}
+
+.project-card {
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease;
+}
+.project-card:hover {
+  box-shadow: 0 30px 80px rgba(43, 61, 48, .12);
+}
+
+/* ── Button Hover Enhancements ── */
+.button-primary {
+  transition: transform .25s cubic-bezier(.22, 1, .36, 1), background .2s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.button-primary:hover {
+  box-shadow: 0 16px 40px rgba(23, 61, 49, .22);
+}
+
+.contact-link {
+  transition: background .2s, transform .25s cubic-bezier(.22, 1, .36, 1), box-shadow .25s ease;
+  will-change: transform;
+}
+.contact-link:hover {
+  box-shadow: 0 10px 30px rgba(23, 61, 49, .18);
+}
+
+/* ── Float Note Hover ── */
+.float-note {
+  transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease;
+}
+.float-note:hover {
+  box-shadow: 0 16px 45px rgba(34, 53, 41, .15);
+}
+
+/* ── Profile Card Pulse Glow ── */
+.profile-card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(57, 115, 90, .15), rgba(241, 178, 149, .1), rgba(216, 209, 238, .1));
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.profile-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Animated Status Dot ── */
+.status-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(100, 167, 126, .14); }
+  50% { box-shadow: 0 0 0 8px rgba(100, 167, 126, .08); }
+}
+
+/* ── Orbit Rotation Animation ── */
+.orbit-one {
+  animation: orbitSpin 30s linear infinite;
+}
+.orbit-two {
+  animation: orbitSpin 40s linear infinite reverse;
+}
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Spark Float Animation ── */
+.avatar-spark {
+  animation: sparkFloat 3s ease-in-out infinite;
+}
+.spark-b {
+  animation-delay: 1.5s;
+}
+@keyframes sparkFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.15); }
+}
+
+/* ── Scroll Cue Enhanced ── */
+.scroll-cue {
+  animation: fadeUpDown 2.5s ease-in-out infinite;
+}
+@keyframes fadeUpDown {
+  0%, 100% { opacity: .6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* ── Trait / Tag Hover ── */
+.trait-list span,
+.tag-list span,
+.course-list span,
+.project-stack span {
+  transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+  cursor: default;
+}
+.trait-list span:hover {
+  border-color: var(--green);
+  color: var(--green);
+  transform: translateY(-2px);
+}
+.tag-list span:hover {
+  border-color: rgba(203, 223, 207, .4);
+  background: rgba(248, 249, 241, .08);
+  transform: translateY(-2px);
+}
+.course-list span:hover {
+  border-color: rgba(213, 230, 210, .35);
+  transform: translateY(-2px);
+}
+.project-stack span:hover {
+  background: #dfe8da;
+  transform: translateY(-2px);
+}
+html[data-theme="dark"] .project-stack span:hover {
+  background: #3e5a46;
+}
+
+/* ── Fact Counter Highlight ── */
+.fact strong {
+  transition: color .3s ease;
+}
+.fact:hover strong {
+  color: var(--green);
+}
+
+/* ── Contact Spark Rotation ── */
+.contact-spark {
+  animation: spinSpark 6s linear infinite;
+}
+@keyframes spinSpark {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(350deg); }
+}
+
+/* ── Email Link Hover ── */
+.contact-email {
+  transition: color .2s ease, letter-spacing .3s ease;
+}
+.contact-email:hover {
+  letter-spacing: -.02em;
+}
+
+/* ── Social Link Hover Underline ── */
+.social-links a {
+  position: relative;
+}
+.social-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--green);
+  transition: width .3s ease;
+}
+.social-links a:hover::after {
+  width: 100%;
+}
+
+/* ── Text Link Arrow Animation ── */
+.text-link span,
+.contact-link span,
+.project-cta span {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+.text-link:hover span {
+  transform: translate(2px, -2px);
+}
+.contact-link:hover span {
+  transform: translate(2px, -2px);
+}
+.project-cta:hover span {
+  transform: translate(3px, -3px);
+}
+
+/* ── Footer Link Hover ── */
+.footer-links a {
+  position: relative;
+}
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--green);
+  transition: width .3s ease;
+}
+.footer-links a:hover::after {
+  width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
+  .js [data-stagger] { opacity: 1; transform: none; }
+  .scroll-progress { display: none; }
+  .cursor-glow { display: none; }
 }
